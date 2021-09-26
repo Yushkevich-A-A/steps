@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import StepModel from '../../StepModel/StepModel';
 
 import './Step.css';
 
@@ -23,7 +24,7 @@ function Step(props) {
 }
 
 Step.propTypes = {
-    step: PropTypes.object.isRequired,
+    step: PropTypes.instanceOf(StepModel).isRequired,
     onRemove: PropTypes.func.isRequired,
     onEdit: PropTypes.func.isRequired,
 };
