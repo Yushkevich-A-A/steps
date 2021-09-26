@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import './Form.css';
@@ -26,7 +26,9 @@ function Form(props) {
 }
 
 Form.propTypes = {
-
+    form: PropTypes.object.isRequired,
+    onAdd: PropTypes.func.isRequired,
+    onEditForm: PropTypes.func.isRequired,
 };
 
 export default Form;

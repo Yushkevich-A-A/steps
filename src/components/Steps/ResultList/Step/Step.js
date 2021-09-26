@@ -23,7 +23,9 @@ function Step(props) {
 }
 
 Step.propTypes = {
-
+    step: PropTypes.object.isRequired,
+    onRemove: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired,
 };
 
 export default Step;

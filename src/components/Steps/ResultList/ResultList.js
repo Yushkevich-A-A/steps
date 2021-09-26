@@ -5,7 +5,6 @@ import Step from './Step/Step';
 
 function ResultList(props) {
     const { list, onRemove: handleRemove, onEdit: handleEdit } = props;
-    console.log(list);
 
     return (
         <div className='result-container'>
@@ -24,7 +23,9 @@ function ResultList(props) {
 }
 
 ResultList.propTypes = {
-
+    list: PropTypes.array.isRequired,
+    onRemove: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired,
 };
 
 export default ResultList;

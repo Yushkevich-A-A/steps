@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
-import PropTypes from 'prop-types';
+import { compareDesc, parse  } from 'date-fns'
+import { nanoid } from 'nanoid';
 import ResultList from './ResultList/ResultList';
 import Form from './Form/Form';
 import StepModel from './StepModel/StepModel';
-import { compareDesc, parse  } from 'date-fns'
-import { nanoid } from 'nanoid';
 import './Steps.css';
 
 function Steps() {
@@ -12,19 +11,19 @@ function Steps() {
     const [ form, setForm ] = useState({id: nanoid(), date: '', distance: ''});
 
     const handleAdd = (step) => {
-        const currentStep = steps.find( item => item.date === step.date );
+        const newStepsArr = steps.filter( item => item.id !== step.id); 
+        const currentStep = newStepsArr.find( item => item.date === step.date );
+
         if (currentStep) {
-            console.log('такая дата существует')
             const sumDistance = parseFloat(step.distance) + parseFloat(currentStep.distance);
-            setSteps(steps.map( item => (item.id === currentStep.id) ?
+            setSteps(newStepsArr.map( item => (item.id === currentStep.id) ?
                                 new StepModel(currentStep.id, currentStep.date, sumDistance) :
                                 item));
         } else {
-            const newStepsArr = steps.map( item => item.id === step.id ? new StepModel(step.id, step.date, step.distance) : item );
-            setSteps(newStepsArr.sort((a, b) => compareDesc(
+            setSteps([...newStepsArr,new StepModel(step.id, step.date, step.distance) ].sort((a, b) => compareDesc(
                 parse(a.date, 'dd.MM.yyyy', new Date()),
                 parse(b.date, 'dd.MM.yyyy', new Date())
-                )))
+                )));
         }
         setForm({id: nanoid(), date: '', distance: ''});
     }
@@ -34,7 +33,7 @@ function Steps() {
     }
 
     const handleEdit = (id) => {
-        setForm(steps.find( item => item.id === id));
+        setForm({...steps.find( item => item.id === id)});
     }
 
     const handleInputValue = event => {
@@ -54,9 +53,5 @@ function Steps() {
         </div>
     )
 }
-
-Steps.propTypes = {
-
-};
 
 export default Steps;
