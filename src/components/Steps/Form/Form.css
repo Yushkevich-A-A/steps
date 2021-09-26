@@ -1,0 +1,25 @@
+.form {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.form-input,
+.form-button {
+    border: 1px solid #818181;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.form-input {
+    outline: none;
+}
+
+.form-button {
+    background-color: #fff;
+}

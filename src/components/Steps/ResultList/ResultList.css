@@ -1,0 +1,17 @@
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    font-weight: 600;
+}
+
+.result-header-data {
+    width: 150px;
+    text-align: center;
+}
+
+.result-list {
+    border: 2px solid #818181;
+    padding: 20px;
+    border-radius: 15px;
+}
